@@ -115,3 +115,4 @@
        git push -u origin master
 
 3. Inicio de proyecto:
+     - Generando CRUDS de Posts, Categorías y Usuarios
