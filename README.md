@@ -25,7 +25,7 @@
 
 # **Our Log**
 
-<p align="center"><img src="/public/img/Laravel.png"</p>
+<p align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/200px-Laravel.svg.png"</p>
 
 ## PROYECTO FINAL LARAVEL
 
