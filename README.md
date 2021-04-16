@@ -57,7 +57,7 @@
 
       Una vez descargado descomprimimos el archivo y lo pegamos en la carpeta **C:\laragon\bin\php**, una vez hecho esto nos ubicamos en nuestro laragon, paramos los servicios le damos clic en menu -> php -> version y seleccionamos la nueva versión instalada y arrancamos de nuevo los servicios.
 
- - ### **INSTALACIÓN DE LARAVEL Y VOYAGER**
+ - ### **INSTALACIÓN DE LARAVEL**
       Nos dirigimos a la linea de comandos de laragon, nos ubicamos en la ruta **C:\laragon\www** e ingresamos el siguiente comando:
 
       composer global require laravel/installer :de esta forma instalamos las dependencias de laravel
@@ -70,28 +70,13 @@
 
       composer create-project laravel/laravel proyectoFinal.
 
-      A continuación procedemos a instalar voyager en nuestro proyecto pero para ello primero hay que crear una base de datos nueva, por ello nos dirigimos a Base de Datos en laragon y se nos abrirá Heidi Sql, desde ahí creamos la base de datos llamada proyectofinal.
-
       Además tenemos que ir al archivo .env dentro de laravel y configurar los siguientes parametros:
  
       - DB_DATABASE=proyectofinal
       - DB_USERNAME=root
       - DB_PASSWORD=
 
-      Ahora descargamos voyager mediante el siguiente comando:
-
-      composer require tcg/voyager
-
-      Realizamos las migraciones de las tablas generadas por voyager mediante el siguiente comando:
-
-      php artisan voyager:install --with-dummy
-
-      Una vez dentro del proyecto nos dirimos a la url http://proyectoFinal.test/admin para acceder a voyager.
-
-      Las credenciales son:
-
-      - User: admin@admin.com
-      - Password: password
+      Una vez dentro del proyecto nos dirimos a la url http://proyectoFinal.test/ para acceder al mismo.
  
  2. Github:
        Para user github primero debemos instalar Git en el sistema, para ello nos dirigimos a la web oficial de git, lo descargamos y lo instalamos:
@@ -122,3 +107,35 @@
      - php artisan make:magration create_categories_table
      Añadimos los campos correspondientes a cada tabla y ejecutamos el siguiente comando para generar las tablas en la base de datos:
      - php artisan magrate
+
+- Creamos el controlador de los post mediante el comando:
+     - php artisan make:controller dashboard/PostController
+
+- Generamos la ruta de tipo resource en el archivo web.php
+     Mediante el comando ***php artisan r:l*** podemos ver las rutas generadas.
+
+- Creamos la vista para nuestro post/create en resources > views > dashboard > create.blade.php y la añadimos al metodo create del PostContoller para que nos retorne la misma.
+     En la vista generamos un formulario para enviar el post.
+
+     En el action del formulario, mediante blade agregamos la ruta de post.store
+
+     Agregamos el token de seguridad de laravel, el cual sirve para proteger nuestra palicación de manera que no puedan insuflar codigo en el action.
+
+- Instalando bootstrap en el proyecto
+     Instalamos npm(Node Package Manager, el cual es el sistema de gestión de paquetes por defecto de node.js) con el comando: ***npm install***
+     
+     Instalamos laravel/ui con el comando: ***composer require laravel/ui --dev ***
+
+     Ahora mediante laravel ui instalamos boostrap y vue mediante el comando: ***php artisan ui vue***
+
+     A continuación volvemos a ejecutar npm para instalar todas las dependencias: ***npm install***
+
+     Por último ejecutamos el siguiente comando que nos genera los archivos css y js en la carpeta public: ***npm run dev***
+
+     **NOTA:** si nos salta error volvemos a ejecutar el comando por segunda vez.
+
+     Agregamos las dependencias de bootstrap y js mediante blade a nuestra vista create.
+
+     Añadimos las reglas de validación de los campos del formulario post y sus mensajes mediante blade.
+
+     Generando layout de post en dashboard > master.blade.php.
