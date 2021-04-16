@@ -115,4 +115,10 @@
        git push -u origin master
 
 3. Inicio de proyecto:
-     - Generando CRUDS de Posts, Categorías y Usuarios
+- Creamos los CRUDS de Posts, Categorías y Usuarios
+     Para ello generamos las tablas y sus correspondientes migraciones.
+     Creamos las tablas mediante la línea de comandos de laragon:
+     - php artisan make:magration create_posts_table
+     - php artisan make:magration create_categories_table
+     Añadimos los campos correspondientes a cada tabla y ejecutamos el siguiente comando para generar las tablas en la base de datos:
+     - php artisan magrate
