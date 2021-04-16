@@ -122,6 +122,7 @@
      Agregamos el token de seguridad de laravel, el cual sirve para proteger nuestra palicación de manera que no puedan insuflar codigo en el action.
 
 - Instalando bootstrap en el proyecto
+
      Instalamos npm(Node Package Manager, el cual es el sistema de gestión de paquetes por defecto de node.js) con el comando: ***npm install***
      
      Instalamos laravel/ui con el comando: ***composer require laravel/ui --dev ***
