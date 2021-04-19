@@ -125,7 +125,7 @@
 
      Instalamos npm(Node Package Manager, el cual es el sistema de gestión de paquetes por defecto de node.js) con el comando: ***npm install***
      
-     Instalamos laravel/ui con el comando: ***composer require laravel/ui --dev ***
+     Instalamos laravel/ui con el comando: ***composer require laravel/ui --dev***
 
      Ahora mediante laravel ui instalamos boostrap y vue mediante el comando: ***php artisan ui vue***
 
@@ -137,6 +137,14 @@
 
      Agregamos las dependencias de bootstrap y js mediante blade a nuestra vista create.
 
+- Añadiendo reglas de validación a nuestro formulario de post
+     
      Añadimos las reglas de validación de los campos del formulario post y sus mensajes mediante blade.
 
      Generando layout de post en dashboard > master.blade.php.
+
+- Modularizando la validación de errores
+
+     Creamos un nueva vista llamada validation-error.blade.php en la carpeta dashboard/partials en el cual vamos a rellenar con nuestro código blade de validación del post y el mismo lo incluimos mediante blade a nuestra vista create de post.
+
+
