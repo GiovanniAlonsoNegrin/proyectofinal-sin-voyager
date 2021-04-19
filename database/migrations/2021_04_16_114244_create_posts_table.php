@@ -19,7 +19,6 @@ class CreatePostsTable extends Migration
             $table->string('url_clean',500);
             $table->text('content');
             $table->enum('posted', ['yes', 'not'])->nullable()->default('not');
-            $table->bigInteger('category_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }
