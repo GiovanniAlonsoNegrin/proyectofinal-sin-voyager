@@ -1,6 +1,7 @@
-Menu del administrador
 @extends('dashboard.master')
+
 @section('content')
+
 <table class="table">
     <thead>
         <tr>
