@@ -17,6 +17,6 @@ use App\Http\Controllers\Dashboard\PostController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::resource('dashboard/post', PostController::class);
