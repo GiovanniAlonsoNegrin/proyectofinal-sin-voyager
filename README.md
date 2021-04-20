@@ -147,4 +147,32 @@
 
      Creamos un nueva vista llamada validation-error.blade.php en la carpeta dashboard/partials en el cual vamos a rellenar con nuestro código blade de validación del post y el mismo lo incluimos mediante blade a nuestra vista create de post.
 
+- Pasando datos de post a la base de datos:
 
+     Creamos modelo Post y añadimos la propiedad fillable con los datos que queremos pasar.
+
+     Creamos un request mediante linea de comandos: ***php artisan make:request StorePostPost*** el nombre se debe a que el store es el método que va a emplear esta validación, post es el modelo y post es el tipo petición . 
+
+     Dentro del StorePostPost le pasamos nuestras reglas de validación y autorizamos el acceso retornando un true al metodo autorize().
+
+     En nuestro controlador de post PostController tenemos que inyectar las reglas de validación de nuestro request StorePostPost, entonces al metodo store le pasamos como primer parámetro StorePostPost (quitando Request) e importamos la clase.
+
+     Dentro del método store, mediante Post accedemenos al metodo stático create y le pasamos los datos validados de nuestro request, consiguiendo de esta manera que se manden los datos a la tabla posts que tenemos en nuesta base de datos.
+
+     En este punto nos surge otro problema y es que al enviar el formulario se nos retorna una página en blanco, para solucionar esto redireccionamos a la vista de create, para ello nos situamos en PostController->store y añadimos un return back() consiguiendo asi que retorne atrás hacia la vista create y para que se nos muestre un mensaje de confirmación ustilizamos el método with('status', 'message'); en donde message sería el mensaje que nosotros pondríamos, para visualizarlo generamos un condicional con la session('status') en la vista master de Post .
+
+- Creando navbar y modularizando la web
+
+     Mediante boostrap creamos nuestro navbar en el documento views>dashboard>partials>nav-header-main.php y lo incluimos en el archivo master.blade.php ubicado en dashboard>post.
+
+     Modularizamos la validación de sesion y la pasamos a dashboard>partials>validation-error.blade.php y la incluimos en master.blade.php
+
+     Dentro del narvar linkeamos la ruta a nuestra vista index de post en la cual nos mostrará todos los posts que existan.
+
+- Creando vista index post
+
+     Creamos la vista index.blade.php en reources>views>dashboard>post 
+
+     Mediante el PostController en el metodo index retornamos la vista previamente creada y le enlazamos los posts.
+
+     En la vista generamos una tabla para mostrar los posts.
