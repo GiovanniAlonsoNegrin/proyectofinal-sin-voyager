@@ -39,18 +39,19 @@ class PostController extends Controller
      */
     public function store(StorePostPost $request)
     {
-        //dd($request->validated());
-        /************************************************** 
-        dd($request->all());
-        $request->validate([
-            'title' => 'required|min:5|max:500',
-            //'url_clean' => 'required|min:5|max:500',
-            'content' => 'required|min:5'
-        ]);
-        echo "hola mundo: " . $request->$content;
-        Post::create();
-        **************************************************/
+        // //dd($request->validated());
+        
+        // dd($request->all());
+        // $request->validate([
+        //     'title' => 'required|min:5|max:500',
+        //     //'url_clean' => 'required|min:5|max:500',
+        //     'content' => 'required|min:5'
+        // ]);
+        // echo "hola mundo: " . $request->$content;
+        // Post::create();
+        
         Post::create($request->validated());
+        
         return back()->with('status', 'Post creado con exito');
     }
 
