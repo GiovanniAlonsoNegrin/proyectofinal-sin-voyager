@@ -175,4 +175,17 @@
 
      Mediante el PostController en el metodo index retornamos la vista previamente creada y le enlazamos los posts.
 
-     En la vista generamos una tabla para mostrar los posts.
+     En la vista generamos una tabla para mostrar los posts y le agregamos un botón para crear un post mediante blade.
+
+- Paginación de posts
+
+     En el post controller->index añadimos a $posts el paginate(), luego en el index de post agregamos los links para la paginación.
+     Editamos la pginación en bootstrap(public/css/app.css)
+
+- Guardar información del formulario en caso de error para no tener que volver a escribirla
+
+     La haremos mediante el metodo Old de laravel, nos dirigimos a la vista create de post y mediante el value de los imput escribimos en codigo blade el metodo old para cada campo, excepto en el text area que lo intriducimos directamente como valor de la misma etiqueta.
+
+- Mostrar información en la vista show de post
+
+     En el post controller dentro de show retornamos la vista show y el post correspondiente, además agregamos los values correspondientes dentro de la vista.

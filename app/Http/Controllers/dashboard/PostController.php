@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->get();
+        $posts = Post::orderBy('created_at','desc')->paginate(2);
         
         return view("dashboard.post.index", ['posts' => $posts]);
     }
@@ -61,9 +61,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        return view("dashboard.post.show");
+        //$post = Post::findOrFail($id);
+
+        return view("dashboard.post.show",["post" => $post]);
     }
 
     /**

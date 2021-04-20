@@ -5261,13 +5261,16 @@ input[type=button].btn-block {
   margin-left: -1px;
   line-height: 1.25;
   color: #3490dc;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
+  /* background-color: #fff; */
+  background-color: #1a1717;
+  /* border: 1px solid #dee2e6; */
+  border: 1px solid #3490dc;
 }
 
 .page-link:hover {
   z-index: 2;
-  color: #1d68a7;
+  /* color: #1d68a7; */
+  color: #2c2727;
   text-decoration: none;
   background-color: #e9ecef;
   border-color: #dee2e6;
@@ -5298,10 +5301,12 @@ input[type=button].btn-block {
 }
 
 .page-item.disabled .page-link {
-  color: #6c757d;
+  /* color: #6c757d; */
+  color: #3490dc;
   pointer-events: none;
   cursor: auto;
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #2c2727;
   border-color: #dee2e6;
 }
 

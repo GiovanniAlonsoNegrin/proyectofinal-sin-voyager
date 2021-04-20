@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset("css/app.css") }}" crossorigin="anonymous">
     <title>Módulo admin</title>
 </head>
-<body>
+<body class="bg-info">
    @include('dashboard.partials.nav-header-main')
     <div class="container mt-3">
        @include('dashboard.partials.session-flash-status')
