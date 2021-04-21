@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->paginate(2);
+        $posts = Post::orderBy('created_at','desc')->paginate(10);
         
         return view("dashboard.post.index", ['posts' => $posts]);
     }
@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("dashboard.post.create");
+        return view("dashboard.post.create", ['post' => new Post()]);
     }
 
     /**
@@ -74,9 +74,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view("dashboard.post.edit",["post" => $post]);
     }
 
     /**
@@ -86,9 +86,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePostPost $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        
+        return back()->with('status', 'Post actualizado con exito');
     }
 
     /**
@@ -97,8 +99,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return back()->with('status', 'Post eliminado con exito');
     }
 }

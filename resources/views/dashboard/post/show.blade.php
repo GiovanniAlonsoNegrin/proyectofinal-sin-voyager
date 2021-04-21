@@ -9,10 +9,6 @@
         <div class="form-group">
             <label for="title">Título</label>
             <input readonly class="form-control" type="text" name="title" id="title" value="{{ $post->title }}">
-        
-            @error('title')
-                <small class="text-danger">{{ $message }}</small>
-            @enderror
         </div>
         <div class="form-group">
             <label for="url_clean">Url limpia</label>
@@ -21,10 +17,7 @@
         <div class="form-group">
             <label for="content">Contenido</label>
             <textarea readonly class="form-control" name="content" id="content" rows="">{{ $post->content }}</textarea>
-
-            @error('content')
-                <small class="text-danger">{{ $message }}</small>
-            @enderror
         </div> 
     </form>
+    <a class="btn btn-success border border-dark" href="{{ route('post.index') }}">Volver</a>
 @endsection

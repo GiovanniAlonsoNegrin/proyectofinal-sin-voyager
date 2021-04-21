@@ -188,4 +188,56 @@
 
 - Mostrar información en la vista show de post
 
-     En el post controller dentro de show retornamos la vista show y el post correspondiente, además agregamos los values correspondientes dentro de la vista.
+     En el post controller dentro de show inyectamos el parámetro Post y retornamos la vista show y el post correspondiente, además agregamos los values correspondientes dentro de la vista show.
+
+- Editar un post
+
+     Creamos la vista edit.blade.php, modularizamos el formulario de manera que la cabecera del mismo la editamos en cada archivo dado que create también va a hacer uso del formulario y de esta forma podemos tener actions diferentes.
+
+     En el action del formulario de la vista edit, añadimos la ruta junto con el post y su id, ademas agregamos el metodo en envío put de laravel mediante las directvias de laravel, dado que php nativo no cuenta con el metodo put.
+
+     Nos ubicamos ahora en el PostController y en el método de edit inyectamos como parametro el Post y retornamos la vista junto con el post.
+
+     Dentro de PostController nos hubicamos en el método update al cuál le inyectamos como parametro Post para no tener que consultar el post y cambios el request por el StorePosstPost consiguiendo así que tengamos las reglas de validaciones que generamos anteriormente.
+
+     A continucación añadimos nuestro Post con el metodo update y retornamos el mensaje de confirmación de actualización del mismo.
+
+     Ahora vamos a nuestro _form y los values de los imputs también retornamos el valor actual de cada campo, dado que desde la vista edit le hemos pasado dichos valores, con esto conseguimos que se nos vea los valores por defecto del post.
+
+     Por último nos dirigimos al PostController al método create y le pasamos una nueva instancia de post a nuestra vista, por que si no cuando vayamos a crear un post se nos genera un error.
+
+- Borrar un post
+
+     Para ello nos situamos en el index, pero en vez de ser un boton, tenemos que hacer un formulario dado que hay que especificar el metodo delete de laravel y por ello lo haremos mediante un formaulario y dentro del mismo generamos el método delete de laravel y le agregamos un boton tipo submit con las clases de bootstrap, ademas de añadir la ruta del delete al action del formulario y el token csrf de seguridad.
+
+     Dentro de PosController en el método destroy inyectamos como parámetro nuestro Post para no tener que consultar el identificardor del post y a la variable post le pasamos el metodo delete.
+
+     Añadimos el retorno de la pagina junto con el mensaje de confirmación del mismo.
+
+     A modo de seguridad vamo a agregar un modal de bootstrap el cual nos pregunte si estamos seguros de eliminar el post. Para ello copiamos el código de bootstrap y lo pegamos en nuestro index de post con el script incluido.
+
+     Cambiamos las id del modal y en el boton cambiamos el data-whatever por data-id y mediante blade pasamos el post->id, cambiamos los mensaje y mediante jquery captamos ls id de cada post.
+
+- Creación de categorías
+
+     Creamos el CategoryController, su modelo Category y su request StoreCategoryPost.
+
+     Copiamos la carpeta post y la renombramos como category.
+
+     Editamos todas las vistas y cambiamos los nombres mediante Ctrl + h(en visual estudio code), en donde post es igual a category y posts es igual a categories.
+
+     En en el controlador CategoryController copiamos el index de PostController y le cambiamos los nombres en donde post es igual a category y posts es igual a categories.
+
+     En el StoreCategoryPost en las reglas de validación las copiamos de StorePostPost y quitamos el content y pasamos a true el método autorize().
+
+     En el modelo Category agregamos el fillable.
+
+- Instalación de plugin CKEditor
+
+     CKEditor es un plugin que enrriquece el text area de nuestro formulario post.
+
+     Intalación: mediante la línea de comandos ingresamos el siguiente código: npm install --save @ckeditor/ckeditor5-build-classic.
+
+     Lo añadimos a resources>js>app.js.
+
+     Ejecutamos npm run dev para volcar nuestros cambios al js publico.
