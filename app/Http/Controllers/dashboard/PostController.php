@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
+use Illuminate\Database\Eloquent\Builder;
 
 class PostController extends Controller
 {
@@ -76,6 +78,17 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        // dd($post->categories);
+        $category = Category::with('posts')->get(); 
+        //dd($category[1]->posts);
+        
+        $posts = Post::whereHas('categories',function(Builder $query){
+            $query->where('id',3);
+        })->get();
+        dd($posts);
+
+        
+
         return view("dashboard.post.edit",["post" => $post]);
     }
 
