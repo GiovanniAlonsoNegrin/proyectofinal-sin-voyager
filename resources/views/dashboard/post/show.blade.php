@@ -19,5 +19,5 @@
             <textarea readonly class="form-control" name="content" id="content" rows="">{{ $post->content }}</textarea>
         </div> 
     </form>
-    <a class="btn btn-success border border-dark" href="{{ route('post.index') }}">Volver</a>
+    <a class="btn btn-secondary border border-dark" href="{{ route('post.index') }}">Cancelar</a>
 @endsection
