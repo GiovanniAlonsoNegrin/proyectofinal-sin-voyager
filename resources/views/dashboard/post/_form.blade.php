@@ -20,4 +20,4 @@
     @enderror
 </div> 
 <button class="btn btn-primary" type="submit">Enviar</button>
-<a class="btn btn-success border border-dark" href="{{ route('post.index') }}">Volver</a>
+<a class="btn btn-secondary border border-dark" href="{{ route('post.index') }}">Cancelar</a>
