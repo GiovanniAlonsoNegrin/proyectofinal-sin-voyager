@@ -79,17 +79,22 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         // dd($post->categories);
-        $category = Category::with('posts')->get(); 
+        
+        //dd($categories->posts); 
+
+        //$category = Category::with('posts')->get(); 
         //dd($category[1]->posts);
         
-        $posts = Post::whereHas('categories',function(Builder $query){
-            $query->where('id',3);
-        })->get();
-        dd($posts);
-
+        // $posts = Post::whereHas('categories',function(Builder $query){
+        //     $query->where('id',3);
+        // })->get();
         
+        //dd($posts);
 
-        return view("dashboard.post.edit",["post" => $post]);
+        $category = Category::find(3);
+        $categories = Category::pluck('id','title');
+
+        return view("dashboard.post.edit",["post" => $post, 'categories' => $categories]);
     }
 
     /**

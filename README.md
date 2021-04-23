@@ -241,3 +241,16 @@
      Lo añadimos a resources>js>app.js.
 
      Ejecutamos npm run dev para volcar nuestros cambios al js publico.
+
+     Más adelante configuraremos la subida de imagenes del mismo.
+
+- Relación muchos a muchos entre category y posts
+
+     Para ello nos vamos a los modelos de cada uno, dentro del modelo post generamos una función cuyo nombre es categories en la que especificamos que
+     que un post puede pertenecer a muchas categorias y ademas en este caso especificamos el nombre de la tabla pivote y sus campos category_id y post_id. Realizamos la misma operación en el modelo de Category pero en este caso la función que generamos se va a llamar posts en la cuál especificamos que una categoría puede pertenecer a muchos posts.
+
+- Generando campo categorias en el formulario de post
+
+     Para ello nos dirigimos al postcontroller y tanto en la vista edit como create mediante el método pluck captamos la id y el titulo de las categorías y los mismos los pasamos a la vista.
+
+     Nos vamos a la vista _form de post y generamos el imput de categories.
