@@ -13,12 +13,7 @@
             <td>
                 Titulo
             </td>
-            <td>
-                Creación
-            </td>
-            <td>
-                Actualización
-            </td>
+            
             <td>
                 <center>Acciones</center>
             </td>
@@ -32,12 +27,6 @@
             </td>
             <td> 
                 {{ $category->title }} 
-            </td>
-            <td> 
-                {{ $category->created_at->format('d-m-Y') }} 
-            </td>
-            <td> 
-                {{ $category->updated_at->format('d-m-Y') }} 
             </td>
             <td>
                 <center>

@@ -20,6 +20,9 @@
                 Creación
             </td>
             <td>
+                Actualización
+            </td>
+            <td>
                 <center>Acciones</center>
             </td>
         </tr>

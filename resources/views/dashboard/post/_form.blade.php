@@ -1,4 +1,10 @@
+<?php
+use App\Models\Category;
+$categories = Category::pluck('id','title');
+?>
+
 @csrf
+
 <div class="form-group">
     <label for="title">Título</label>
     <input class="form-control" type="text" name="title" id="title" value="{{ old('title', $post->title) }}">
