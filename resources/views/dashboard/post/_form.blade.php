@@ -1,8 +1,3 @@
-<?php
-use App\Models\Category;
-$categories = Category::pluck('id','title');
-?>
-
 @csrf
 
 <div class="form-group">
@@ -21,6 +16,7 @@ $categories = Category::pluck('id','title');
 
 <div class="form-group">
     <label for="categories_id">Categorías</label>
+    <button class="btn btn-sm border border-success bg-light"><span class="text-danger h5"><strong>x</strong></span> <strong>Coche</strong></button>
     <select class="form-control" name="categories_id" id="categories_id">
         @foreach ($categories as $title => $id)
             <option value="{{ $id }}">{{ $title }}</option>
@@ -38,19 +34,15 @@ $categories = Category::pluck('id','title');
     @enderror
 </div> 
 <button class="btn btn-primary" type="submit">Enviar</button>
-<a class="btn btn-secondary border border-dark" href="{{ route('post.index') }}">Cancelar</a>
-<button class="btn btn-danger" type="button" onclick="change()">XML</button>
+<a class="btn btn-secondary" href="{{ route('post.index') }}">Cancelar</a>
+<button class="btn btn-danger" type="button" id="cateogries">XML</button>
 
 <script>
+    window.onload = function () { 
 
-    var xmlhttp;
+        $( "#cateogries" ).click(function() {
+            console.log("Dentro de change");   
+        });  
 
-    function change() {
-        console.log("Dentro de change");
-        if(window.XMLHttpRequest){
-            xmlhttp = new XMLHttpRequest();
-        } else if(window.ActiveXObjetct){
-            xmlhttp = new ActiveXOBject("Microsoft.XMLHTTP");
-        }
     }   
 </script>

@@ -30,7 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("dashboard.post.create", ['post' => new Post()]);
+        $categories = Category::pluck('id','title');
+
+        return view("dashboard.post.create", ['post' => new Post(), 'categories' => $categories]);
     }
 
     /**
@@ -91,7 +93,7 @@ class PostController extends Controller
         
         //dd($posts);
 
-        $category = Category::find(3);
+        //$category = Category::find(3);
         $categories = Category::pluck('id','title');
 
         return view("dashboard.post.edit",["post" => $post, 'categories' => $categories]);

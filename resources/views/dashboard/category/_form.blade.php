@@ -12,4 +12,4 @@
     <input class="form-control" type="text" name="url_clean" id="url_clean" value="{{ old('url_clean', $category->url_clean) }}">
 </div>
 <button class="btn btn-primary" type="submit">Enviar</button>
-<a class="btn btn-success border border-dark" href="{{ route('category.index') }}">Volver</a>
+<a class="btn btn-secondary" href="{{ route('category.index') }}">Cancelar</a>

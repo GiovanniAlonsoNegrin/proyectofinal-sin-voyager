@@ -11,8 +11,8 @@
     @include('dashboard.partials.nav-header-main')
     <div class="container mt-3">
         @include('dashboard.partials.session-flash-status')
-        @yield('content')
-    </div>
-    <script src="{{ asset("js/app.js") }}"></script> 
+        @yield('content') 
+    </div>    
 </body>
+<script src="{{ asset("js/app.js") }}"></script>
 </html>
