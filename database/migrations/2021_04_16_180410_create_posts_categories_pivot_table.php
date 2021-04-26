@@ -15,9 +15,9 @@ class CreatePostsCategoriesPivotTable extends Migration
     {
         Schema::create('posts_categories', function (Blueprint $table) {
             $table->unsignedBigInteger('post_id');
-            $table->foreign('post_id','post_id_fk_180410')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id','category_id_fk_180410')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
@@ -28,6 +28,9 @@ class CreatePostsCategoriesPivotTable extends Migration
      */
     public function down()
     {
-        //
+        // DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        // Schema::dropIfExists('posts');
+        // Schema::dropIfExists('categories');
+        // DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

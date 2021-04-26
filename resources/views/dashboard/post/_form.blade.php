@@ -8,22 +8,41 @@
         <small class="text-danger">{{ $message }}</small>
     @enderror
 </div>
+
 <div class="form-group">
     <label for="url_clean">Url limpia</label>
     <input class="form-control" type="text" name="url_clean" id="url_clean" value="{{ old('url_clean', $post->url_clean) }}">
 </div>
 
-
 <div class="form-group">
     <label for="categories_id">Categorías</label>
-    <button class="btn btn-sm border border-success bg-light"><span class="text-danger h5"><strong>x</strong></span> <strong>Coche</strong></button>
-    <select class="form-control" name="categories_id" id="categories_id">
-        @foreach ($categories as $title => $id)
+    
+    <span id="catEvent">
+        <a href="#" class="btn btn-sm border border-success bg-light" id="myButton"><span class="text-danger h5"><strong>x</strong></span> <strong>Coche</strong></a>
+    </span>    
+
+    <select multiple class="form-control" name="categories_id[]" id="categories_id">
+        {{-- @foreach ($categories as $title => $id)
             <option value="{{ $id }}">{{ $title }}</option>
-        @endforeach
+        @endforeach --}}
+
+        @forelse ($categories as $title => $id)
+            <option value="{{ $id }}" id="{{ $id }}">{{ $title }}</option>
+        @empty
+            <option value="">No hay categorías</option>
+        @endforelse
+
     </select>
+
 </div>
 
+<div class="form-group">
+    <label for="posted">Posteado</label>
+    <select class="form-control" name="posted" id="posted">
+        @include('dashboard.partials.option-yes-not')
+    </select>
+
+</div>
 
 <div class="form-group">
     <label for="content">Contenido</label>
@@ -35,14 +54,13 @@
 </div> 
 <button class="btn btn-primary" type="submit">Enviar</button>
 <a class="btn btn-secondary" href="{{ route('post.index') }}">Cancelar</a>
-<button class="btn btn-danger" type="button" id="cateogries">XML</button>
 
 <script>
     window.onload = function () { 
-
-        $( "#cateogries" ).click(function() {
-            console.log("Dentro de change");   
+        $( "#myButton" ).click(function() {  
+            $( "#myButton" ).hide(function() {
+                console.log( "Animation complete." );
+            });
         });  
-
     }   
 </script>

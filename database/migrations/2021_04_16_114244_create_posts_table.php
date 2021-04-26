@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->enum('posted', ['yes', 'not'])->nullable()->default('not');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

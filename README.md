@@ -249,8 +249,19 @@
      Para ello nos vamos a los modelos de cada uno, dentro del modelo post generamos una función cuyo nombre es categories en la que especificamos que
      que un post puede pertenecer a muchas categorias y ademas en este caso especificamos el nombre de la tabla pivote y sus campos category_id y post_id. Realizamos la misma operación en el modelo de Category pero en este caso la función que generamos se va a llamar posts en la cuál especificamos que una categoría puede pertenecer a muchos posts.
 
+- SoftDeletes
+
+     Si en algún momento eliminamos algo que no queríamos eliminar se podría recuperar mediante el softdelete.
+
+     Para ello generamos una nueva columna en las tablas llamada $table->softDeletes(), luego nos dirigimos al modelo de cada tabla y hacemos uso de softDeletes (use SoftDeletes) e importamos la clase, ahora cada vez que eliminemos algo nos saldrá una fecha de eliminación del registro y si esta la ponemos a null volveremos a recuperar el registro eliminado.
+
 - Generando campo categorias en el formulario de post
 
      Para ello nos dirigimos al postcontroller y tanto en la vista edit como create mediante el método pluck captamos la id y el titulo de las categorías y los mismos los pasamos a la vista.
 
-     Nos vamos a la vista _form de post y generamos el imput de categories.
+     Nos vamos a la vista _form de post y generamos el imput de categories, mediante un forelse nos recoremos las categorías y las mostramos.
+
+     Para sincronizar las categorías con la base de datos usamos el metodo sync.
+
+- Generando campo posted
+

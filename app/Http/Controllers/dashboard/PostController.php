@@ -43,18 +43,9 @@ class PostController extends Controller
      */
     public function store(StorePostPost $request)
     {
-        // //dd($request->validated());
-        
-        // dd($request->all());
-        // $request->validate([
-        //     'title' => 'required|min:5|max:500',
-        //     //'url_clean' => 'required|min:5|max:500',
-        //     'content' => 'required|min:5'
-        // ]);
-        // echo "hola mundo: " . $request->$content;
-        // Post::create();
-        
-        Post::create($request->validated());
+        $post = Post::create($request->validated());
+
+        $post->categories()->sync($request->categories_id);
         
         return back()->with('status', 'Post creado con exito');
     }
@@ -108,6 +99,11 @@ class PostController extends Controller
      */
     public function update(StorePostPost $request, Post $post)
     {
+
+        //dd($request->categories_id);
+
+        $post->categories()->sync($request->categories_id);
+
         $post->update($request->validated());
         
         return back()->with('status', 'Post actualizado con exito');
