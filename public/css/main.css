@@ -1,3 +1,7 @@
 body{
-    background-color: hsla(192, 60%, 72%, 0.445);
+    background-color: hsl(194, 29%, 24%);
+}
+
+label {
+    color: whitesmoke;
 }

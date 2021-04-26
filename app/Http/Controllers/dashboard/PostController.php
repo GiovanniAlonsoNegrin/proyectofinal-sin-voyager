@@ -60,7 +60,8 @@ class PostController extends Controller
     {
         //$post = Post::findOrFail($id);
 
-        return view("dashboard.post.show",["post" => $post]);
+        $categories = Category::pluck('id','title');
+        return view("dashboard.post.show",["post" => $post, 'categories' => $categories]);
     }
 
     /**

@@ -18,7 +18,7 @@
     <label for="categories_id">Categorías</label>
     
     <span id="catEvent">
-        <a href="#" class="btn btn-sm border border-success bg-light" id="myButton"><span class="text-danger h5"><strong>x</strong></span> <strong>Coche</strong></a>
+        <span href="#" class="btn btn-sm border border-success bg-light" id="myButton"><span class="text-danger h5"><strong>x</strong></span> <strong>Coche</strong></span>
     </span>    
 
     <select multiple class="form-control" name="categories_id[]" id="categories_id">
@@ -27,7 +27,7 @@
         @endforeach --}}
 
         @forelse ($categories as $title => $id)
-            <option value="{{ $id }}" id="{{ $id }}">{{ $title }}</option>
+            <option {{ in_array($id, old('categories_id') ?: []) ? "selected" : "" }} value="{{ $id }}" id="{{ $id }}">{{ $title }}</option>
         @empty
             <option value="">No hay categorías</option>
         @endforelse
@@ -53,11 +53,7 @@
     @enderror
 </div> 
 <button class="btn btn-primary" type="submit">Enviar</button>
-<<<<<<< HEAD
 <a class="btn btn-secondary" href="{{ route('post.index') }}">Cancelar</a>
-=======
-<a class="btn btn-secondary border border-dark" href="{{ route('post.index') }}">Volver</a>
->>>>>>> 0fcb62f98607785b362ff50b4fa636480862fc67
 
 <script>
     window.onload = function () { 

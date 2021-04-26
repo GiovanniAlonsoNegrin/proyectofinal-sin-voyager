@@ -15,6 +15,27 @@
             <input readonly class="form-control" type="text" name="url_clean" id="url_clean" value="{{ $post->url_clean }}">
         </div>
         <div class="form-group">
+            <label for="categories_id">Categorías</label>
+            
+            <span id="catEvent">
+                <a href="#" class="btn btn-sm border border-success bg-light" id="myButton"><span class="text-danger h5"><strong>x</strong></span> <strong>Coche</strong></a>
+            </span>    
+        
+            <select readonly multiple class="form-control" name="categories_id[]" id="categories_id">
+                {{-- @foreach ($categories as $title => $id)
+                    <option value="{{ $id }}">{{ $title }}</option>
+                @endforeach --}}
+        
+                @forelse ($categories as $title => $id)
+                    <option {{ in_array($id, old('categories_id') ?: $post->categories->pluck("id")->toArray()) ? "selected" : "" }} value="{{ $id }}" id="{{ $id }}">{{ $title }}</option>
+                @empty
+                    <option value="">No hay categorías</option>
+                @endforelse
+        
+            </select>
+        
+        </div>
+        <div class="form-group">
             <label for="content">Contenido</label>
             <textarea readonly class="form-control" name="content" id="content" rows="">{{ $post->content }}</textarea>
         </div> 

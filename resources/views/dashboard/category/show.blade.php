@@ -15,5 +15,5 @@
             <input readonly class="form-control" type="text" name="url_clean" id="url_clean" value="{{ $category->url_clean }}">
         </div>
     </form>
-    <a class="btn btn-success border border-dark" href="{{ route('category.index') }}">Volver</a>
+    <a class="btn btn-secondary" href="{{ route('category.index') }}">Cancelar</a>
 @endsection
