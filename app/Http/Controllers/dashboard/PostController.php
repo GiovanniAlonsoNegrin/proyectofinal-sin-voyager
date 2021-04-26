@@ -110,6 +110,19 @@ class PostController extends Controller
         return back()->with('status', 'Post actualizado con exito');
     }
 
+    public function image(Request $request, Post $post)
+    {
+        $request->validate([
+            'image' => 'required|mimes:jpg,jpeg,bmp,png|max:10240' //10Mb
+        ]);
+
+        $filename = time() . "." . $request->image->extension();
+
+        $request->image->move(public_path('images'), $filename);
+
+        echo "Hello world ".$filename;
+    }
+
     /**
      * Remove the specified resource from storage.
      *

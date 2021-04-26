@@ -27,21 +27,19 @@
         @endforeach --}}
 
         @forelse ($categories as $title => $id)
-            <option {{ in_array($id, old('categories_id') ?: []) ? "selected" : "" }} value="{{ $id }}" id="{{ $id }}">{{ $title }}</option>
+            <option {{ in_array($id, old('categories_id') ?: $post->categories->pluck("id")->toArray()) ? "selected" : "" }} value="{{ $id }}" id="{{ $id }}">{{ $title }}</option>
         @empty
             <option value="">No hay categorías</option>
         @endforelse
 
     </select>
-
 </div>
 
 <div class="form-group">
     <label for="posted">Posteado</label>
     <select class="form-control" name="posted" id="posted">
-        @include('dashboard.partials.option-yes-not')
+        @include('dashboard.partials.option-yes-not', ['val' => $post->posted])
     </select>
-
 </div>
 
 <div class="form-group">

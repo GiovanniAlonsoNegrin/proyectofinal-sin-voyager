@@ -10,10 +10,12 @@
             <label for="title">Título</label>
             <input readonly class="form-control" type="text" name="title" id="title" value="{{ $post->title }}">
         </div>
+
         <div class="form-group">
             <label for="url_clean">Url limpia</label>
             <input readonly class="form-control" type="text" name="url_clean" id="url_clean" value="{{ $post->url_clean }}">
         </div>
+
         <div class="form-group">
             <label for="categories_id">Categorías</label>
             
@@ -21,7 +23,7 @@
                 <a href="#" class="btn btn-sm border border-success bg-light" id="myButton"><span class="text-danger h5"><strong>x</strong></span> <strong>Coche</strong></a>
             </span>    
         
-            <select readonly multiple class="form-control" name="categories_id[]" id="categories_id">
+            <select disabled multiple class="form-control" name="categories_id[]" id="categories_id">
                 {{-- @foreach ($categories as $title => $id)
                     <option value="{{ $id }}">{{ $title }}</option>
                 @endforeach --}}
@@ -35,6 +37,14 @@
             </select>
         
         </div>
+
+        <div class="form-group">
+            <label for="posted">Posteado</label>
+            <select disabled class="form-control" name="posted" id="posted">
+                @include('dashboard.partials.option-yes-not', ['val' => $post->posted])
+            </select>
+        </div>
+
         <div class="form-group">
             <label for="content">Contenido</label>
             <textarea readonly class="form-control" name="content" id="content" rows="">{{ $post->content }}</textarea>

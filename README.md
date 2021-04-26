@@ -263,5 +263,17 @@
 
      Para sincronizar las categorías con la base de datos usamos el metodo sync.
 
+
+
 - Generando campo posted
+
+     Creamos una vista en partials llamado option-yes-not.blade.php dado que esto puede que lo utilicemos más adelante, en ella colocamos unicamente los options y en el campo de yes le hacemos una pequeña validación de forma que si esta seleccionado yes se nos quede seleccionado, la incluimos en la vista _form y en la vista show y listo.
+
+- Cargar una imagen como portada del post
+
+     Generamos un formulario en la vista edit, dado que no queremos que cuando se cree un post se pueda colocar una imagen.
+
+     Generamos la ruta en web.php
+
+     Generamos la función image en PostController
 
