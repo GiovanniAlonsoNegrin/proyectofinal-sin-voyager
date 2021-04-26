@@ -38,7 +38,7 @@ $categories = Category::pluck('id','title');
     @enderror
 </div> 
 <button class="btn btn-primary" type="submit">Enviar</button>
-<a class="btn btn-secondary border border-dark" href="{{ route('post.index') }}">Cancelar</a>
+<a class="btn btn-secondary border border-dark" href="{{ route('post.index') }}">Volver</a>
 <button class="btn btn-danger" type="button" onclick="change()">XML</button>
 
 <script>
