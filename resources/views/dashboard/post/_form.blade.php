@@ -53,7 +53,11 @@
     @enderror
 </div> 
 <button class="btn btn-primary" type="submit">Enviar</button>
+<<<<<<< HEAD
 <a class="btn btn-secondary" href="{{ route('post.index') }}">Cancelar</a>
+=======
+<a class="btn btn-secondary border border-dark" href="{{ route('post.index') }}">Volver</a>
+>>>>>>> 0fcb62f98607785b362ff50b4fa636480862fc67
 
 <script>
     window.onload = function () { 
