@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\PostImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
@@ -11,6 +12,13 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PostController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware(['auth', 'rol.admin']);
+        // $this->middleware('rol.moderator');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -61,6 +69,7 @@ class PostController extends Controller
         //$post = Post::findOrFail($id);
 
         $categories = Category::pluck('id','title');
+        
         return view("dashboard.post.show",["post" => $post, 'categories' => $categories]);
     }
 
@@ -86,6 +95,9 @@ class PostController extends Controller
         //dd($posts);
 
         //$category = Category::find(3);
+
+        //dd($post->image->image);
+
         $categories = Category::pluck('id','title');
 
         return view("dashboard.post.edit",["post" => $post, 'categories' => $categories]);
@@ -120,7 +132,9 @@ class PostController extends Controller
 
         $request->image->move(public_path('images'), $filename);
 
-        echo "Hello world ".$filename;
+        PostImage::create(['image' => $filename, 'post_id' => $post->id ]);
+
+        return back()->with('status', 'Imagen cargada con exito');
     }
 
     /**

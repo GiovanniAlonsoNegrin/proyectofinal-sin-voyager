@@ -259,11 +259,11 @@
 
      Para ello nos dirigimos al postcontroller y tanto en la vista edit como create mediante el método pluck captamos la id y el titulo de las categorías y los mismos los pasamos a la vista.
 
-     Nos vamos a la vista _form de post y generamos el imput de categories, mediante un forelse nos recoremos las categorías y las mostramos.
+     Agregamos los cdn de Select2.
+
+     Nos vamos a la vista _form de post y generamos el imput de Select2 de categories, mediante un forelse nos recoremos las categorías y las mostramos.
 
      Para sincronizar las categorías con la base de datos usamos el metodo sync.
-
-
 
 - Generando campo posted
 
@@ -277,3 +277,45 @@
 
      Generamos la función image en PostController
 
+     Para enviar la información a la base de datos crearemos una nueva tabla llamada create_post_images_table y la relacionamos con la tabla post.
+
+- Módulo de autencicación
+
+     Para generar nuestro módulo de autenticación haremos uso de Laravel ui, mediante el comando ***php artisan ui vue --auth***.
+
+     Una vez hecho esto nos dirigimos al controlador RegisterController.php situado en app/Http/Controllers/Auth y añadimos a las reglas de validación el campo surname.
+
+     Nos dirigimos al modelo de User y añadimo al fillable el campo surname.
+
+     Nos dirigimos a la vista de register.blade.php situada en resources/views/auth y agregamos el campo de surname al formulario.
+
+     Redireccionamos a la url raíz después de autenticarnos, para ello nos dirigimos a RouteServiceProvider.php y en la constante HOME le asignamos el valor de /. 
+
+     Entro del dashboard generamos el logout, copiando el formulario logout de app.blade.php.
+
+     Protegemos nuestro dashboard mediante un midleware(se ejecuta antes de cualquier método definido en el controlador), para ello copiamos el metodo __construnt de nuestro HomeController y este lo pegamos al inicio del PostController y del CategoryController, de esta forma si intentan acceder al dashboard primero saltará la ventana de autenticación.
+
+- Roles de usuarios
+
+     Para ello creamos una tabla llamada create_rols_table, en ella añadimos los campos de name y description y luego creamos los roles de Admin, Moderator y user de formar manual en nuestra base de datos.
+
+     Creamos un modelo llamado Rol.
+
+     En la tabla user agregamos el registro rol_id, y ahora en el modelo de post generamos la relación de uno a uno, es decir un suario tiene un rol.
+
+     En el RegisterController, dentro del método create añadimos el campo rol_id y le pones el valor por defecto de 3 que sería el de usuario. 
+
+     En el modelo de user añadimos al fillable el rol_id.
+
+- Creamos un middleware para verificar el rol del usuario Admin
+
+     Lo creamos mediente el comando: php artisan make:middleware CheckRolAdmin, y dentro de el mediante un codicional verificamos si la key es de admin y si no retornamos a la raíz.
+
+     Lo agregamos al kernel.php en routemidleware.
+
+     Lo referenciamos a nuestros controladores de post y category.
+
+- Creamos un middleware para verificar el rol del usuario Moderador.
+
+     Repetimos los pasos anteriores.
+     
