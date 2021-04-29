@@ -13,7 +13,6 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'rol.admin']);
-        // $this->middleware('rol.moderator')->only('index');
     }
     /**
      * Display a listing of the resource.

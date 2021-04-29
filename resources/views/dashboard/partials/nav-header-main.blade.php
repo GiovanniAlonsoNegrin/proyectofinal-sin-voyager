@@ -11,11 +11,11 @@
 					Menu
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{{ route('post.index') }}">Post</a>
+					<a class="dropdown-item" href="{{ route('post.index') }}">Posts</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="{{ route('category.index') }}">Categorías</a>
                     <div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Usuarios</a>
+					<a class="dropdown-item" href="{{ route('user.index') }}">Usuarios</a>
 				</div>
 			</li>
       	</ul>

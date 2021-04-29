@@ -2,7 +2,7 @@
 
 @section('content')
 
-<a class="btn btn-success btn-lg mb-3 border border-dark" href="{{ route('post.create') }}">Crear</a>
+<a class="btn btn-success btn-lg mb-3 border border-dark" href="{{ route('user.create') }}">Crear</a>
 
 <table class="table table-striped table-dark">
     <thead>
@@ -11,16 +11,16 @@
                 ID
             </td>
             <td>
-                Titulo
+                Nombre
             </td>
             <td>
-                Posteado
+                Apellido
             </td>
             <td>
-                Creación
+                Email
             </td>
             <td>
-                Actualización
+                Rol
             </td>
             <td>
                 <center>Acciones</center>
@@ -28,30 +28,30 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($posts as $post)
+        @foreach ($users as $user)
         <tr>
             <td> 
-                {{ $post->id }} 
+                {{ $user->id }} 
             </td>
             <td> 
-                {{ $post->title }} 
+                {{ $user->name }} 
             </td>
             <td> 
-                {{ $post->posted }} 
+                {{ $user->surname }} 
             </td>
             <td> 
-                {{ $post->created_at->format('d-m-Y') }} 
+                {{ $user->email }} 
             </td>
             <td> 
-                {{ $post->updated_at->format('d-m-Y') }} 
+                {{ $user->rol->key }} 
             </td>
             <td>
                 <center>
                     <div>
-                        <a class="btn btn-primary" href="{{ route('post.show',$post->id) }}">Ver</a>
-                        <a class="btn btn-success" href="{{ route('post.edit',$post->id) }}">Actualizar</a>
+                        <a class="btn btn-primary" href="{{ route('user.show',$user->id) }}">Ver</a>
+                        <a class="btn btn-success" href="{{ route('user.edit',$user->id) }}">Actualizar</a>
                         
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}" data-title="{{ $post->title }}">Eliminar</button>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $user->id }}" data-name={{ $user->name }}>Eliminar</button>
                         
                     </div>
                 </center> 
@@ -61,7 +61,7 @@
     </tbody>
 </table>   
 
-{{ $posts->links() }}
+{{ $users->links() }}
 
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -73,11 +73,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>¿Seguro que desea borrar el post selececionado?</p>
+                <p>¿Seguro que desea borrar el usuario selececionado?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <form id="formDelete" action="{{ route('post.destroy',0) }}" data-action="{{ route('post.destroy',0) }}" method="post">
+                <form id="formDelete" action="{{ route('user.destroy',0) }}" data-action="{{ route('user.destroy',0) }}" method="post">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger">Borrar</button>
@@ -95,7 +95,7 @@
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             
-            var title = button.data('title')
+            var name = button.data('name')
 
             action = $('#formDelete').attr('data-action').slice(0,-1)
             action += id
@@ -103,7 +103,7 @@
             $('#formDelete').attr('action', action)
 
             var modal = $(this)
-            modal.find('.modal-title').text('Vas a borrar el post: ' + title)
+            modal.find('.modal-title').text('Vas a borrar al usuario: ' + name )
         });
     };
 </script>

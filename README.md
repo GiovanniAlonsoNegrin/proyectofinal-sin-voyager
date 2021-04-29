@@ -311,11 +311,17 @@
 
      Lo creamos mediente el comando: php artisan make:middleware CheckRolAdmin, y dentro de el mediante un codicional verificamos si la key es de admin y si no retornamos a la raíz.
 
-     Lo agregamos al kernel.php en routemidleware.
+     Lo agregamos al kernel.php en routeMidleware.
 
-     Lo referenciamos a nuestros controladores de post y category.
+     Lo referenciamos a nuestros controladores de post y category dentro del metodo __construct.
 
-- Creamos un middleware para verificar el rol del usuario Moderador.
+- Creamos un gate para verificar el rol del usuario Moderador.
 
-     Repetimos los pasos anteriores.
+- Generamos el crud de usuarios
+
+     Creamos su respectivo controlador de tipo resource, creamos su request con las reglas de validación corrrespondientes.
+
+     Copiamos las vistas de category y remplazamos las variable categories por users y category por user, ademas modificamos los correspondientes campos del formulario.
+
+     Para que no se nos muestre el campo password a la hora de actualizar el usuario desde el dashboard generamos un conficional if en blade y le ponemos de nombre pasw, en la vista create le pasamos ese condicional como true y en la edit como false así no se nos muestra el campo, ahora tenemos que generar un validador(request) proprio llamado UpdateUserPut.
      
