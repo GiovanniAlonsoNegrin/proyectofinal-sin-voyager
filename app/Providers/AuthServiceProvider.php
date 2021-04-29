@@ -40,6 +40,5 @@ class AuthServiceProvider extends ServiceProvider
             return $user->rol->key == 'Usuario';
         });
        
-       
     }
 }

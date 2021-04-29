@@ -315,7 +315,10 @@
 
      Lo referenciamos a nuestros controladores de post y category dentro del metodo __construct.
 
-- Creamos un gate para verificar el rol del usuario Moderador.
+- Creamos los gates para verificar el rol del usuario Moderador.
+     Para ello definimos los gates en AuthServiceProvideder dentro del método boot().
+
+     Luego de esto los enlazamos a los controladores a cada método que queramos que tenga acceso el administrador y el moderador.
 
 - Generamos el crud de usuarios
 
@@ -324,4 +327,14 @@
      Copiamos las vistas de category y remplazamos las variable categories por users y category por user, ademas modificamos los correspondientes campos del formulario.
 
      Para que no se nos muestre el campo password a la hora de actualizar el usuario desde el dashboard generamos un conficional if en blade y le ponemos de nombre pasw, en la vista create le pasamos ese condicional como true y en la edit como false así no se nos muestra el campo, ahora tenemos que generar un validador(request) proprio llamado UpdateUserPut.
+
+- Instalación de tailwinds 
+
+     Lo haremos mediante npm:
+     ***npm install -D tailwindcss@latest postcss@latest autoprefixer@latest***
+
+- Instalación de livewire
+
+     Lo haremos mediante composer:
+     ***composer require livewire/livewire***
      
