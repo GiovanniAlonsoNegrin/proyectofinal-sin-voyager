@@ -27,7 +27,7 @@ class UserController extends Controller
             $users = User::orderBy('created_at','asc')->paginate(10);
             return view("dashboard.user.index", ['users' => $users]);
         }else{
-            return back();
+            return back()->with('alert', 'Acceso restringido al módulo: usuarios, solo Administradores');
         }
     }
 

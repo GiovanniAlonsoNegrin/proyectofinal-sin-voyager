@@ -28,7 +28,7 @@ class CategoryController extends Controller
             return view("dashboard.category.index", ['categories' => $categories]);
             
         }else{
-            return back();
+            return back()->with('alert', 'Acceso restringido al módulo: categorías, solo Administradores');
         }
         
     }

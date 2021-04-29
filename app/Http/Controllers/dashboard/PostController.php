@@ -37,7 +37,7 @@ class PostController extends Controller
             }
             
         }else{
-            dd('You are not admin or moderator');
+            return back();
         }
     }
 
@@ -48,9 +48,13 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('id','title');
+        if (Gate::allows('isAdmin')){
+            $categories = Category::pluck('id','title');
 
-        return view("dashboard.post.create", ['post' => new Post(), 'categories' => $categories]);
+            return view("dashboard.post.create", ['post' => new Post(), 'categories' => $categories]);
+        }else{
+            return back()->with('alert', 'Acceso restringido, solo Administradores');
+        }
     }
 
     /**
