@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserPost;
 use App\Http\Requests\UpdateUserPut;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -22,9 +23,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at','asc')->paginate(10);
-        
-        return view("dashboard.user.index", ['users' => $users]);
+        if (Gate::allows('isAdmin')){
+            $users = User::orderBy('created_at','asc')->paginate(10);
+            return view("dashboard.user.index", ['users' => $users]);
+        }else{
+            return back();
+        }
     }
 
     /**
@@ -34,7 +38,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view("dashboard.user.create", ['user' => new User()]);
+        if (Gate::allows('isAdmin')){
+            return view("dashboard.user.create", ['user' => new User()]);
+        }else{
+            return back();
+        }        
     }
 
     /**
@@ -45,17 +53,22 @@ class UserController extends Controller
      */
     public function store(StoreUserPost $request)
     {
-        User::create(
-            [
-                'name' => $request['name'],
-                'surname' => $request['surname'],
-                'rol_id' => 3, // user rol
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]
-        );
+        if (Gate::allows('isAdmin')){
+            User::create(
+                [
+                    'name' => $request['name'],
+                    'surname' => $request['surname'],
+                    'rol_id' => 3, // user rol
+                    'email' => $request['email'],
+                    'password' => Hash::make($request['password']),
+                ]
+            );
+            return back()->with('status', 'Usuario creada con exito');
+
+        }else{
+            return back();
+        }
         
-        return back()->with('status', 'Usuario creada con exito');
     }
 
     /**
@@ -66,7 +79,12 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view("dashboard.user.show",["user" => $user]);
+        if (Gate::allows('isAdmin')){
+            return view("dashboard.user.show",["user" => $user]);
+        }else{
+            return back();
+        }
+        
     }
 
     /**
@@ -77,7 +95,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view("dashboard.user.edit",["user" => $user]);
+        if (Gate::allows('isAdmin')){
+            return view("dashboard.user.edit",["user" => $user]);
+        }else{
+            return back();
+        }
+        
     }
 
     /**
@@ -89,7 +112,8 @@ class UserController extends Controller
      */
     public function update(UpdateUserPut $request, User $user)
     {
-        $user->update(
+        if (Gate::allows('isAdmin')){
+            $user->update(
             [
                 'name' => $request['name'],
                 'surname' => $request['surname'],
@@ -98,6 +122,10 @@ class UserController extends Controller
         );
         
         return back()->with('status', 'Usuario actualizada con exito');
+        }else{
+            return back();
+        }
+        
     }
 
     /**
@@ -108,8 +136,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
-
-        return back()->with('status', 'Usuario eliminada con exito');
+        if (Gate::allows('isAdmin')){
+            $user->delete();
+            return back()->with('status', 'Usuario eliminada con exito');
+            
+        }else{
+            return back();
+        }
+        
     }
 }

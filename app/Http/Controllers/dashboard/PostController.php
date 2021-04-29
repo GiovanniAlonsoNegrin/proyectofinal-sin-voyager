@@ -8,6 +8,7 @@ use App\Models\PostImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostPost;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Builder;
 
 class PostController extends Controller
@@ -26,9 +27,18 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->paginate(10);
-        
-        return view("dashboard.post.index", ['posts' => $posts]);
+        if (Gate::allows('isAdmin') OR Gate::allows('isModerator')){
+            if (Gate::allows('isAdmin')) {
+                $posts = Post::orderBy('created_at','desc')->paginate(10);
+                return view("dashboard.post.index", ['posts' => $posts]);
+            }else{
+                $posts = Post::orderBy('created_at','desc')->paginate(10);
+                return view("dashboard.post.index", ['posts' => $posts]);
+            }
+            
+        }else{
+            dd('You are not admin or moderator');
+        }
     }
 
     /**

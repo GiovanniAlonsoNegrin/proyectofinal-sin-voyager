@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreCategoryPost;
 
 class CategoryController extends Controller
@@ -21,9 +22,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('created_at','asc')->paginate(10);
         
-        return view("dashboard.category.index", ['categories' => $categories]);
+        if (Gate::allows('isAdmin')){
+            $categories = Category::orderBy('created_at','asc')->paginate(10);
+            return view("dashboard.category.index", ['categories' => $categories]);
+            
+        }else{
+            return back();
+        }
+        
     }
 
     /**
@@ -33,7 +40,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view("dashboard.category.create", ['category' => new Category()]);
+        if (Gate::allows('isAdmin')){
+            return view("dashboard.category.create", ['category' => new Category()]);
+        }else{
+            return back();        
+        }
     }
 
     /**
@@ -44,9 +55,12 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryPost $request)
     {
-        Category::create($request->validated());
-        
-        return back()->with('status', 'Categoría creada con exito');
+        if (Gate::allows('isAdmin')){
+            Category::create($request->validated());
+            return back()->with('status', 'Categoría creada con exito');
+        }else{
+            return back();
+        }
     }
 
     /**
@@ -57,7 +71,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view("dashboard.category.show",["category" => $category]);
+        if (Gate::allows('isAdmin')){
+            return view("dashboard.category.show",["category" => $category]);
+        }else{
+            return back();
+        }
     }
 
     /**
@@ -68,7 +86,11 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view("dashboard.category.edit",["category" => $category]);
+        if (Gate::allows('isAdmin')){
+            return view("dashboard.category.edit",["category" => $category]);
+        }else{
+            return back();
+        }
     }
 
     /**
@@ -80,9 +102,13 @@ class CategoryController extends Controller
      */
     public function update(StoreCategoryPost $request, Category $category)
     {
-        $category->update($request->validated());
+        if (Gate::allows('isAdmin')){
+            $category->update($request->validated());
+            return back()->with('status', 'Categoría actualizada con exito');
+        }else{
+            return back();
+        }
         
-        return back()->with('status', 'Categoría actualizada con exito');
     }
 
     /**
@@ -93,8 +119,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-
-        return back()->with('status', 'Categoría eliminada con exito');
+        if (Gate::allows('isAdmin')){
+            $category->delete();
+            return back()->with('status', 'Categoría eliminada con exito');
+        }else{
+            return back();
+        }
+        
     }
 }

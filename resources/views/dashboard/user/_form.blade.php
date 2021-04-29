@@ -7,14 +7,7 @@
         <small class="text-danger">{{ $message }}</small>
     @enderror
 </div>
-<div class="form-group">
-    <label for="surname">Apellido</label>
-    <input class="form-control" type="text" name="surname" id="surname" value="{{ old('surname', $user->surname) }}">
 
-    @error('surname')
-        <small class="text-danger">{{ $message }}</small>
-    @enderror
-</div>
 <div class="form-group">
     <label for="surname">Apellido</label>
     <input class="form-control" type="text" name="surname" id="surname" value="{{ old('surname', $user->surname) }}">
